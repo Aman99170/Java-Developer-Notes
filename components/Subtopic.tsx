@@ -34,7 +34,7 @@ export default function Subtopic({ topic }: { topic: ISubtopic[] }) {
         <Grid container spacing={2} justifyContent="center" sx={{ textAlign: 'center', mt: 5 }}>
             {topic && topic.map((topic, index) => {
                 return (
-                    <Grid item xs={6} key={index}>
+                    <Grid item xs={7} key={index}>
                         <Card>
                             <CardActionArea onClick={() => { handleOnClick(topic.id) }}>
                                 <Typography variant="h6" sx={{ padding: 2 }}>{topic.subtopic}</Typography>

@@ -43,7 +43,7 @@ export default function Notes() {
         <Grid container spacing={2} justifyContent="center" sx={{ textAlign: 'center', mt: 30 }}>
             {topics && topics.map((topic, index) => {
                 return (
-                    <Grid item xs={6} key={index}>
+                    <Grid item xs={7} key={index}>
                         <Card>
                             <CardActionArea onClick={() => { handleClick(topic.topic) }}>
                                 <Typography variant="h6" sx={{ padding: 2 }}>{topic.topic}</Typography>
