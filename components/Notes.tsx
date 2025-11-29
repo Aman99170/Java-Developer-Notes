@@ -1,4 +1,4 @@
-import { Card, CardActionArea, Grid, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, Grid, Typography } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { ITopic } from '../Interface/topics';
 import Subtopic from './Subtopic';
@@ -37,24 +37,39 @@ export default function Notes() {
 
     useEffect(() => {
         fetchAllTopics();
-    }, [])
+    }, [ ])
 
     return (
-        <Grid container spacing={2} justifyContent="center" sx={{ textAlign: 'center', mt: 30 }}>
-            {topics && topics.map((topic, index) => {
-                return (
-                    <Grid item xs={7} key={index}>
-                        <Card>
-                            <CardActionArea onClick={() => { handleClick(topic.topic) }}>
-                                <Typography variant="h6" sx={{ padding: 2 }}>{topic.topic}</Typography>
-                            </CardActionArea>
-                            {selectedTopic && selectedTopic === topic.topic && (
-                                <Subtopic topic={topic.subtopic} />
-                            )}
-                        </Card>
-                    </Grid>
-                );
-            })}
+        <Grid container spacing={3} justifyContent="center">
+      {topics && topics.map((topic, index) => (
+        <Grid item xs={12} sm={8} md={6} key={index}>
+          <Card
+            sx={{
+              borderRadius: 3,
+              boxShadow: "0 3px 10px rgba(0,0,0,0.15)",
+              transition: "0.3s",
+              "&:hover": {
+                transform: "translateY(-5px)",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+              },
+            }}
+          >
+            <CardActionArea onClick={() => handleClick(topic.topic)}>
+              <Box sx={{ py: 3 }}>
+                <Typography variant="h5" sx={{ fontWeight: 600 , textAlign: 'center' }}>
+                  {topic.topic}
+                </Typography>
+              </Box>
+            </CardActionArea>
+
+            {selectedTopic === topic.topic && (
+              <Box sx={{ px: 2, pb: 2 }}>
+                <Subtopic topic={topic.subtopic} />
+              </Box>
+            )}
+          </Card>
         </Grid>
+      ))}
+    </Grid>
     );
 }

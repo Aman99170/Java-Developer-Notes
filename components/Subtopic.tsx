@@ -1,4 +1,4 @@
-import { Card, CardActionArea, Grid, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, Grid, Typography } from '@mui/material';
 import { ISubtopic } from '../Interface/topics';
 import { useCallback } from 'react';
 
@@ -31,19 +31,30 @@ export default function Subtopic({ topic }: { topic: ISubtopic[] }) {
         }
     }, []);
     return (
-        <Grid container spacing={2} justifyContent="center" sx={{ textAlign: 'center', mt: 5 }}>
-            {topic && topic.map((topic, index) => {
-                return (
-                    <Grid item xs={7} key={index}>
-                        <Card>
-                            <CardActionArea onClick={() => { handleOnClick(topic.id) }}>
-                                <Typography variant="h6" sx={{ padding: 2 }}>{topic.subtopic}</Typography>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
-                );
-            })}
-
+        <Grid container spacing={2} justifyContent="center" sx={{ mt: 2 }}>
+      {topic && topic.map((item, index) => (
+        <Grid item xs={12} sm={8} md={6} key={index}>
+          <Card
+            sx={{
+              borderRadius: 3,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              transition: "0.25s",
+              "&:hover": {
+                transform: "scale(1.02)",
+                boxShadow: "0 5px 16px rgba(0,0,0,0.2)",
+              },
+            }}
+          >
+            <CardActionArea onClick={() => handleOnClick(item.id)}>
+              <Box sx={{ py: 2 }}>
+                <Typography variant="h6" sx={{ fontWeight: 500, textAlign: 'center' }}>
+                  {item.subtopic}
+                </Typography>
+              </Box>
+            </CardActionArea>
+          </Card>
         </Grid>
+      ))}
+    </Grid>
     );
 }
