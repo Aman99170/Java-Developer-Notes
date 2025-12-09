@@ -25,7 +25,6 @@ export default function Home() {
           flexGrow: 1,
           p: 4,
           mt: 8,
-          ml: `${drawerWidth}px`,
           backgroundColor: "#f5f7fa",
           minHeight: "100vh",
         }}
